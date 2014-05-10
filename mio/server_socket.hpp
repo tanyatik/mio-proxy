@@ -4,6 +4,7 @@
 
 #include <netdb.h>
 #include <arpa/inet.h>
+#include <string.h>
 
 #include "socket.hpp"
 #include "internet_address.hpp"
@@ -54,6 +55,9 @@ public:
         int new_fd = ::accept(fd_, &internet_address, &length);
         if (new_fd == -1) { 
             if (non_blocking_ && (errno == EAGAIN || errno == EWOULDBLOCK)) {
+                char *ip_buffer = inet_ntoa(((sockaddr_in *) &internet_address)->sin_addr);
+                std::cout << "Accept from host " << ip_buffer << std::endl;
+
                 return std::shared_ptr<Socket>(nullptr);
             } else {
                 throw std::runtime_error("Failed to accept socket");
