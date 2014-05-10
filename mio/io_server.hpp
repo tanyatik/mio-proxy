@@ -182,8 +182,6 @@ public:
         {} 
  
     void eventLoop() {
-        auto time_start = std::chrono::high_resolution_clock::now();
-
         while (!stop_) { 
             socket_manager_.getReadyDescriptors();
             for (auto event: socket_manager_) {
@@ -208,11 +206,6 @@ public:
                     closeConnection(connection);
                     continue;
                 }
-            }
-
-            auto time_now = std::chrono::high_resolution_clock::now(); 
-            if (std::chrono::duration_cast<std::chrono::seconds>(time_now - time_start).count() > 10) {
-                stop_ = true;
             }
         }
     }
