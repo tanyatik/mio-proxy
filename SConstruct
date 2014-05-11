@@ -3,7 +3,7 @@ source_files = Glob('proxy/*.cpp')
 libraries = ['pthread', 'boost_regex']
 library_paths = ''
 
-flags = ['-Wall', '-g', '-std=c++0x']
+flags = ['-Wall', '-g', '-std=c++0x', '-O2']
 
 include_paths = '.'
 

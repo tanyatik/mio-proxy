@@ -61,7 +61,7 @@ public:
         boost::regex regex("Host: ([\\.a-zA-Z0-9-]*)");
         if (boost::regex_search(request_str, match, regex)) {
             auto hostname = match[1];
-            std::cerr << "Request for host " << match[1] << std::endl;
+            //std::cerr << "Request for host " << match[1] << std::endl;
             try {
                 std::shared_ptr<mio::ConnectionManager> conn_m(connection_manager_.lock()); 
                 std::shared_ptr<mio::Connection> conn(client_connection_.lock());

@@ -32,7 +32,7 @@ private:
     }
 
     void listenTo() {
-        int listen_result = ::listen(fd_, 10);
+        int listen_result = ::listen(fd_, 4096);
         if (listen_result == -1) {
             throw std::runtime_error("Failed to listen");
         } 
@@ -56,7 +56,7 @@ public:
         if (new_fd == -1) { 
             if (non_blocking_ && (errno == EAGAIN || errno == EWOULDBLOCK)) {
                 char *ip_buffer = inet_ntoa(((sockaddr_in *) &internet_address)->sin_addr);
-                std::cout << "Accept from host " << ip_buffer << std::endl;
+                ///std::cerr << "Accept from host " << ip_buffer << std::endl;
 
                 return std::shared_ptr<Socket>(nullptr);
             } else {

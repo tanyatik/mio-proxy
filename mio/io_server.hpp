@@ -31,7 +31,7 @@ struct ServerConfig {
 
 class EpollDescriptorManager {
 private:
-    static constexpr size_t MAX_EVENTS = 128;
+    static constexpr size_t MAX_EVENTS = 1024;
     Socket epoll_socket_;
 
     struct epoll_event events_[MAX_EVENTS];
